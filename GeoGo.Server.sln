@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoGo.Server", "GeoGo.Server\GeoGo.Server.csproj", "{2050CEE2-A64B-43C7-9850-8D90CA0C4194}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2050CEE2-A64B-43C7-9850-8D90CA0C4194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2050CEE2-A64B-43C7-9850-8D90CA0C4194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2050CEE2-A64B-43C7-9850-8D90CA0C4194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2050CEE2-A64B-43C7-9850-8D90CA0C4194}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD179A08-86A9-41C3-AF97-518D6B5A742F}
+	EndGlobalSection
+EndGlobal
