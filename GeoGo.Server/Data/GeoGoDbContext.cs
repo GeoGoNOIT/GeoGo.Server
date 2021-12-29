@@ -12,6 +12,8 @@ namespace GeoGo.Server.Data
         {
         }
 
+        public DbSet<Game> Games { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Game>()
