@@ -4,5 +4,6 @@
 
     public class User : IdentityUser
     {
+        public IEnumerable<Game> Games { get; } = new HashSet<Game>();
     }
 }
