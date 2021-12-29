@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GeoGo.Server.Models.Identity
+namespace GeoGo.Server.Features.Identity
 {
     public class LoginRequestModel
     {

@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 
-namespace GeoGo.Server.Controllers
+namespace GeoGo.Server.Features
 {
     [ApiController]
     [Route("[controller]")]
