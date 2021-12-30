@@ -1,6 +1,4 @@
-using System.Runtime.InteropServices;
 using GeoGo.Server.Infrastructure;
-using Microsoft.VisualBasic;
 
 var builder = WebApplication.CreateBuilder(args);
 
