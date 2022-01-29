@@ -1,5 +1,6 @@
 ﻿using GeoGo.Server.Data;
 using GeoGo.Server.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GeoGo.Server.Features.Games
 {
@@ -9,7 +10,7 @@ namespace GeoGo.Server.Features.Games
 
         public GameService(GeoGoDbContext data) => this.data = data;
 
-        public async Task<int> Create(string imageUrl, string title, string description, string userId)
+        public async Task<int> Create(string imageUrl, string title, string description, string? userId)
         {
             var game = new Game()
             {
@@ -25,5 +26,17 @@ namespace GeoGo.Server.Features.Games
 
             return game.Id;
         }
+
+        public async Task<IEnumerable<GameListingResponseModel>> ByUser(string? userId) 
+            => await this.data
+                .Games
+                .Where(g => g.UserId == userId)
+                .Select(g => new GameListingResponseModel()
+                {
+                    Id = g.Id,
+                    Title = g.Title,
+                    ImageUrl = g.ImageUrl
+                })
+                .ToListAsync();
     }
 }

@@ -1,7 +1,4 @@
-﻿using GeoGo.Server.Data;
-using GeoGo.Server.Data.Models;
-
-namespace GeoGo.Server.Features.Games
+﻿namespace GeoGo.Server.Features.Games
 {
     using Infrastructure;
     using Microsoft.AspNetCore.Authorization;
@@ -12,9 +9,16 @@ namespace GeoGo.Server.Features.Games
         private readonly IGameService gameService;
 
 
-        public GamesController(IGameService gameService)
+        public GamesController(IGameService gameService) => this.gameService = gameService;
+
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IEnumerable<GameListingResponseModel>> Mine()
         {
-            this.gameService = gameService;
+            var userId = this.User.GetId();
+
+            return await this.gameService.ByUser(userId);
         }
 
         [Authorize]
