@@ -1,6 +1,6 @@
-﻿namespace GeoGo.Server.Features.Games
+﻿namespace GeoGo.Server.Features.Games.Models
 {
-    public class GameListingResponseModel
+    public class GameListingServiceModel
     {
         public int Id { get; set; }
 

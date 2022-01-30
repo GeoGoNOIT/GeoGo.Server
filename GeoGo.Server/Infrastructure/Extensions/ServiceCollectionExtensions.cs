@@ -3,13 +3,14 @@ using GeoGo.Server.Data;
 using GeoGo.Server.Data.Models;
 using GeoGo.Server.Features.Games;
 using GeoGo.Server.Features.Identity;
+using GeoGo.Server.Infrastructure.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
-namespace GeoGo.Server.Infrastructure
+namespace GeoGo.Server.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -89,5 +90,11 @@ namespace GeoGo.Server.Infrastructure
                         Version = "v1"
                     });
             });
+
+        public static void AddApiControllers(this IServiceCollection services)
+            => services
+                .AddControllers(options => options
+                    .Filters
+                    .Add<ModelOrNotFoundActionFilter>());
     }
 }

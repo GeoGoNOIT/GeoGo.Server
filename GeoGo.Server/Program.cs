@@ -1,4 +1,4 @@
-using GeoGo.Server.Infrastructure;
+using GeoGo.Server.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,7 @@ builder
     .AddJwtAuthentication(builder.Services.GetApplicationSettings(builder.Configuration))
     .AddApplicationServices()
     .AddSwagger()
-    .AddControllers();
+    .AddApiControllers();
 
 var app = builder.Build();
 

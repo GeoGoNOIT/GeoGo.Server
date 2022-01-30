@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace GeoGo.Server.Infrastructure
+namespace GeoGo.Server.Infrastructure.Extensions
 {
     public static class IdentityExtensions
     {

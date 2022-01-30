@@ -1,4 +1,6 @@
-﻿namespace GeoGo.Server.Features.Identity
+﻿using GeoGo.Server.Features.Identity.Models;
+
+namespace GeoGo.Server.Features.Identity
 {
     using GeoGo.Server.Data.Models;
     using Microsoft.AspNetCore.Identity;

@@ -1,7 +1,7 @@
 ﻿using GeoGo.Server.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace GeoGo.Server.Infrastructure
+namespace GeoGo.Server.Infrastructure.Extensions
 {
     public static class ApplicationBuilderExtensions
     {

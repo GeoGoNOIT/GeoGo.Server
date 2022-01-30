@@ -1,4 +1,4 @@
-﻿namespace GeoGo.Server.Features.Identity
+﻿namespace GeoGo.Server.Features.Identity.Models
 {
     public class LoginResponseModel
     {
