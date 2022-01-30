@@ -30,10 +30,7 @@ namespace GeoGo.Server.Features.Games
 
         public async Task<bool> Update(int id, string title, string description, string userId)
         {
-            var game = await this.data
-                .Games
-                .Where(g => g.Id == id && g.UserId == userId)
-                .FirstOrDefaultAsync();
+            var game = await this.ByIdAndByUserId(id, userId);
 
             if (game == null)
             {
@@ -42,6 +39,22 @@ namespace GeoGo.Server.Features.Games
 
             game.Title = title;
             game.Description = description;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> Delete(int id, string userId)
+        {
+            var game = await this.ByIdAndByUserId(id, userId);
+
+            if (game == null)
+            {
+                return false;
+            }
+
+            this.data.Games.Remove(game);
 
             await this.data.SaveChangesAsync();
 
@@ -74,5 +87,10 @@ namespace GeoGo.Server.Features.Games
                 })
                 .FirstOrDefaultAsync();
 
+        private async Task<Game?> ByIdAndByUserId(int id, string userId) 
+            => await this.data
+                .Games
+                .Where(g => g.Id == id && g.UserId == userId)
+                .FirstOrDefaultAsync();
     }
 }

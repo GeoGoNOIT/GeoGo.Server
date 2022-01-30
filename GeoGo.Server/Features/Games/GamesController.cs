@@ -6,6 +6,7 @@ namespace GeoGo.Server.Features.Games
     using Infrastructure;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using static Infrastructure.WebConstants;
 
     [Authorize]
     public class GamesController : ApiController
@@ -24,7 +25,7 @@ namespace GeoGo.Server.Features.Games
         }
         
         [HttpGet]
-        [Route("{id}")]
+        [Route(Id)]
         public async Task<ActionResult<GameDetailsServiceModel>> Details(int id) 
             => await this.gameService.Details(id);
 
@@ -54,6 +55,22 @@ namespace GeoGo.Server.Features.Games
                 userId);
 
             if (!updated)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route(Id)]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var userId = this.User.GetId();
+
+            var deleted = await this.gameService.Delete(id, userId);
+
+            if (!deleted)
             {
                 return BadRequest();
             }
