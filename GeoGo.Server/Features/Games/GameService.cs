@@ -18,7 +18,7 @@ namespace GeoGo.Server.Features.Games
                 Title = title,
                 Description = description,
                 ImageUrl = imageUrl,
-                UserId = userId,
+                CreatorId = userId,
             };
 
             this.data.Add(game);
@@ -64,7 +64,7 @@ namespace GeoGo.Server.Features.Games
         public async Task<IEnumerable<GameListingServiceModel>> ByUser(string? userId) 
             => await this.data
                 .Games
-                .Where(g => g.UserId == userId)
+                .Where(g => g.CreatorId == userId)
                 .OrderByDescending(g => g.CreatedOn)
                 .Select(g => new GameListingServiceModel()
                 {
@@ -81,17 +81,17 @@ namespace GeoGo.Server.Features.Games
                 .Select(g => new GameDetailsServiceModel
                 {
                     Id = g.Id,
-                    UserId = g.UserId,
+                    CreatorId = g.CreatorId,
                     ImageUrl = g.ImageUrl,
                     Description = g.Description,
-                    UserName = g.User.UserName
+                    UserName = g.Creator.UserName
                 })
                 .FirstOrDefaultAsync();
 
         private async Task<Game?> ByIdAndByUserId(int id, string userId) 
             => await this.data
                 .Games
-                .Where(g => g.Id == id && g.UserId == userId)
+                .Where(g => g.Id == id && g.CreatorId == userId)
                 .FirstOrDefaultAsync();
     }
 }

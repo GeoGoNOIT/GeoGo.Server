@@ -5,6 +5,8 @@
 
     public class User : IdentityUser, IEntity
     {
+        public string ProfilePhotoUrl { get; set; }
+
         public DateTime CreatedOn { get; set; }
         
         public string? CreatedBy { get; set; }
@@ -13,6 +15,8 @@
 
         public string? ModifiedBy { get; set; }
 
-        public IEnumerable<Game> Games { get; } = new HashSet<Game>();
+        public IEnumerable<Game> CreatedGames { get; } = new HashSet<Game>();
+
+        public IEnumerable<Feedback> Feedbacks { get; } = new HashSet<Feedback>();
     }
 }

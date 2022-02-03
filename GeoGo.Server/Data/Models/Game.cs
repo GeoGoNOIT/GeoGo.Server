@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using GeoGo.Server.Data.Models.Base;
+using GeoGo.Server.Data.Models.Enums;
 
 namespace GeoGo.Server.Data.Models
 {
@@ -18,9 +19,21 @@ namespace GeoGo.Server.Data.Models
         [Required]
         public string ImageUrl { get; set; }
 
-        [Required]
-        public string? UserId { get; set; }
+        public GameType GameType { get; set; }
 
-        public User User { get; set; }
+        [Required]
+        public string? CreatorId { get; set; }
+
+        public User Creator { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public Category Category { get; set; }
+
+        public bool IsPrivate { get; set; }
+
+        public IEnumerable<Stage> Stages { get; set; } = new HashSet<Stage>();
+
+        public IEnumerable<Feedback> Feedbacks { get; } = new HashSet<Feedback>();
     }
 }

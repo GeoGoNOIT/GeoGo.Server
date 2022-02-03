@@ -37,9 +37,65 @@ namespace GeoGo.Server.Data
         {
             builder.Entity<Game>()
                 .HasQueryFilter(g => !g.IsDeleted)
-                .HasOne(g => g.User)
-                .WithMany(u => u.Games)
-                .HasForeignKey(g => g.UserId)
+                .HasOne(g => g.Creator)
+                .WithMany(u => u.CreatedGames)
+                .HasForeignKey(g => g.CreatorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Game>()
+                .HasQueryFilter(g => !g.IsDeleted)
+                .HasOne(g => g.Category)
+                .WithMany(c => c.Games)
+                .HasForeignKey(g => g.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Location>()
+                .HasQueryFilter(l => !l.IsDeleted)
+                .HasOne(l => l.Address)
+                .WithMany(a => a.Locations)
+                .HasForeignKey(l => l.AddressId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Clue>()
+                .HasQueryFilter(c => !c.IsDeleted)
+                .HasOne(c => c.Riddle)
+                .WithMany(r => r.Clues)
+                .HasForeignKey(c => c.RiddleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Stage>()
+                .HasQueryFilter(s => !s.IsDeleted)
+                .HasOne(s => s.Riddle)
+                .WithMany(r => r.Stages)
+                .HasForeignKey(s => s.RiddleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Stage>()
+                .HasQueryFilter(s => !s.IsDeleted)
+                .HasOne(s => s.Location)
+                .WithMany(l => l.Stages)
+                .HasForeignKey(s => s.RiddleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Stage>()
+                .HasQueryFilter(s => !s.IsDeleted)
+                .HasOne(s => s.Game)
+                .WithMany(g => g.Stages)
+                .HasForeignKey(s => s.RiddleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Feedback>()
+                .HasQueryFilter(f => !f.IsDeleted)
+                .HasOne(f => f.Game)
+                .WithMany(g => g.Feedbacks)
+                .HasForeignKey(f => f.GameId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Feedback>()
+                .HasQueryFilter(f => !f.IsDeleted)
+                .HasOne(f => f.User)
+                .WithMany(u => u.Feedbacks)
+                .HasForeignKey(f => f.GameId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
