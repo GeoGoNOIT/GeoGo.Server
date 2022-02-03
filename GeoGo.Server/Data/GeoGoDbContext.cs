@@ -1,12 +1,11 @@
-﻿using GeoGo.Server.Data.Models;
-using GeoGo.Server.Data.Models.Base;
-using GeoGo.Server.Infrastructure.Services;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-
-namespace GeoGo.Server.Data
+﻿namespace GeoGo.Server.Data
 {
+    using Models;
+    using Models.Base;
+    using Infrastructure.Services;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+
     public class GeoGoDbContext : IdentityDbContext<User>
     {
         private readonly ICurrentUserService currentUser;
@@ -95,7 +94,7 @@ namespace GeoGo.Server.Data
                 .HasQueryFilter(f => !f.IsDeleted)
                 .HasOne(f => f.User)
                 .WithMany(u => u.Feedbacks)
-                .HasForeignKey(f => f.GameId)
+                .HasForeignKey(f => f.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);

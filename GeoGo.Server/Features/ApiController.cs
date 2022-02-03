@@ -1,8 +1,7 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-
-namespace GeoGo.Server.Features
+﻿namespace GeoGo.Server.Features
 {
+    using Microsoft.AspNetCore.Mvc;
+
     [ApiController]
     [Route("[controller]")]
     public abstract class ApiController : ControllerBase

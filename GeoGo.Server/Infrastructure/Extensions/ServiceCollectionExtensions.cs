@@ -1,18 +1,18 @@
-﻿using System.Text;
-using GeoGo.Server.Data;
-using GeoGo.Server.Data.Models;
-using GeoGo.Server.Features.Games;
-using GeoGo.Server.Features.Identity;
-using GeoGo.Server.Infrastructure.Filters;
-using GeoGo.Server.Infrastructure.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-
-namespace GeoGo.Server.Infrastructure.Extensions
+﻿namespace GeoGo.Server.Infrastructure.Extensions
 {
+    using System.Text;
+    using Data;
+    using Data.Models;
+    using Features.Games;
+    using Features.Identity;
+    using Filters;
+    using Services;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.IdentityModel.Tokens;
+    using Microsoft.OpenApi.Models;
+
     public static class ServiceCollectionExtensions
     {
         public static AppSettings GetApplicationSettings(

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace GeoGo.Server.Data.Models.Base
+﻿namespace GeoGo.Server.Data.Models.Base
 {
     public interface IEntity
     {

@@ -1,10 +1,9 @@
-﻿using GeoGo.Server.Data;
-using GeoGo.Server.Data.Models;
-using GeoGo.Server.Features.Games.Models;
-using Microsoft.EntityFrameworkCore;
-
-namespace GeoGo.Server.Features.Games
+﻿namespace GeoGo.Server.Features.Games
 {
+    using Data;
+    using GeoGo.Server.Data.Models;
+    using Models;
+    using Microsoft.EntityFrameworkCore;
     public class GameService: IGameService
     {
         private readonly GeoGoDbContext data;

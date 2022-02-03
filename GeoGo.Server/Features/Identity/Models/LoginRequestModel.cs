@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace GeoGo.Server.Features.Identity.Models
+﻿namespace GeoGo.Server.Features.Identity.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class LoginRequestModel
     {
         [Required]

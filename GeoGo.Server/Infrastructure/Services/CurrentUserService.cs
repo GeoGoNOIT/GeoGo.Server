@@ -1,8 +1,8 @@
-﻿using System.Security.Claims;
-using GeoGo.Server.Infrastructure.Extensions;
-
-namespace GeoGo.Server.Infrastructure.Services
+﻿namespace GeoGo.Server.Infrastructure.Services
 {
+    using System.Security.Claims;
+    using Extensions;
+
     public class CurrentUserService : ICurrentUserService
     {
 

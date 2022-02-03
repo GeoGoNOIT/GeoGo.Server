@@ -1,10 +1,10 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
-
-namespace GeoGo.Server.Features.Identity
+﻿namespace GeoGo.Server.Features.Identity
 {
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Security.Claims;
+    using System.Text;
+    using Microsoft.IdentityModel.Tokens;
+
     public class IdentityService : IIdentityService
     {
         public string GenerateJwtToken(string userId, string userName, string secret)

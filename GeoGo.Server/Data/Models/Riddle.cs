@@ -1,16 +1,22 @@
-﻿using GeoGo.Server.Data.Models.Base;
-using GeoGo.Server.Data.Models.Enums;
-
-namespace GeoGo.Server.Data.Models
+﻿namespace GeoGo.Server.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using Base;
+    using Enums;
+
+    using static Validation.Riddle;
+
     public class Riddle : DeletableEntity
     {
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(MaxTextLength)]
         public string Text { get; set; }
 
         public AnswerType AnswerType { get; set; }
 
+        [MaxLength(MaxAnswerLength)]
         public string CorrectAnswer { get; set; } //TODO
 
         public int Points { get; set; }

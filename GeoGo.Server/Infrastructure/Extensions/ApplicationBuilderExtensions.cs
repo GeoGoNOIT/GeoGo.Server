@@ -1,8 +1,8 @@
-﻿using GeoGo.Server.Data;
-using Microsoft.EntityFrameworkCore;
-
-namespace GeoGo.Server.Infrastructure.Extensions
+﻿namespace GeoGo.Server.Infrastructure.Extensions
 {
+    using Data;
+    using Microsoft.EntityFrameworkCore;
+
     public static class ApplicationBuilderExtensions
     {
         public static IApplicationBuilder UseSwaggerUI(this IApplicationBuilder app)

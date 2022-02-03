@@ -1,15 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-using GeoGo.Server.Data.Models.Base;
-using GeoGo.Server.Data.Models.Enums;
-
-namespace GeoGo.Server.Data.Models
+﻿namespace GeoGo.Server.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using Base;
+    using Enums;
+
     using static Validation.Game;
 
     public class Game : DeletableEntity
     {
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(MaxTitleLength)]
         public string Title { get; set; }
 
         [Required]
@@ -22,7 +24,7 @@ namespace GeoGo.Server.Data.Models
         public GameType GameType { get; set; }
 
         [Required]
-        public string? CreatorId { get; set; }
+        public string CreatorId { get; set; }
 
         public User Creator { get; set; }
 

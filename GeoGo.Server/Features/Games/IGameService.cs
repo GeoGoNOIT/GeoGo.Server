@@ -1,7 +1,7 @@
-﻿using GeoGo.Server.Features.Games.Models;
-
-namespace GeoGo.Server.Features.Games
+﻿namespace GeoGo.Server.Features.Games
 {
+    using Models;
+
     public interface IGameService
     {
         Task<int> Create(string imageUrl, string title, string description, string? userId);

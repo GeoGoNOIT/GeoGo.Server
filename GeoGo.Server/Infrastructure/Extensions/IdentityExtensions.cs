@@ -1,7 +1,7 @@
-﻿using System.Security.Claims;
-
-namespace GeoGo.Server.Infrastructure.Extensions
+﻿namespace GeoGo.Server.Infrastructure.Extensions
 {
+    using System.Security.Claims;
+
     public static class IdentityExtensions
     {
         public static string GetId(this ClaimsPrincipal user)

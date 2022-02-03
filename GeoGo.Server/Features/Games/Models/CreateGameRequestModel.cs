@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using GeoGo.Server.Data;
-
-namespace GeoGo.Server.Features.Games.Models
+﻿namespace GeoGo.Server.Features.Games.Models
 {
-    using static Validation.Game;
+    using System.ComponentModel.DataAnnotations;
+
+    using static Data.Validation.Game;
 
     public class CreateGameRequestModel
     {

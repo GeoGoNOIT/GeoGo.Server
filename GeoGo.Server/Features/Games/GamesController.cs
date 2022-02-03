@@ -1,11 +1,10 @@
-﻿using GeoGo.Server.Infrastructure.Services;
-
-namespace GeoGo.Server.Features.Games
+﻿namespace GeoGo.Server.Features.Games
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Models;
-    using Infrastructure.Extensions;
+    using Infrastructure.Services;
+
     using static Infrastructure.WebConstants;
 
     [Authorize]
