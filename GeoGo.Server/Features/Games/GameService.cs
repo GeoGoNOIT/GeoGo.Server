@@ -65,6 +65,7 @@ namespace GeoGo.Server.Features.Games
             => await this.data
                 .Games
                 .Where(g => g.UserId == userId)
+                .OrderByDescending(g => g.CreatedOn)
                 .Select(g => new GameListingServiceModel()
                 {
                     Id = g.Id,

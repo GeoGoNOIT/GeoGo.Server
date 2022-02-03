@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using GeoGo.Server.Data.Models.Base;
 
 namespace GeoGo.Server.Data.Models
 {
     using static Validation.Game;
 
-    public class Game
+    public class Game : DeletableEntity
     {
         public int Id { get; set; }
 

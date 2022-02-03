@@ -4,6 +4,7 @@ using GeoGo.Server.Data.Models;
 using GeoGo.Server.Features.Games;
 using GeoGo.Server.Features.Identity;
 using GeoGo.Server.Infrastructure.Filters;
+using GeoGo.Server.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -77,6 +78,7 @@ namespace GeoGo.Server.Infrastructure.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services) 
             => services
                 .AddTransient<IIdentityService, IdentityService>()
+                .AddScoped<ICurrentUserService, CurrentUserService>()
                 .AddTransient<IGameService, GameService>();
 
         public static IServiceCollection AddSwagger(this IServiceCollection services) 
