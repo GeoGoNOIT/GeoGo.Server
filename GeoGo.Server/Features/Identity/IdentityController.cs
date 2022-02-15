@@ -33,13 +33,12 @@
             };
 
             var result = await this.userManager.CreateAsync(user, model.Password);
-
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
-                return this.Ok();
+                return this.BadRequest(result.Errors);
             }
 
-            return this.BadRequest(result.Errors);
+            return this.Ok();
         }
 
         [HttpPost]
@@ -53,7 +52,6 @@
             }
 
             var passwordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
-
             if (!passwordValid)
             {
                 return Unauthorized();

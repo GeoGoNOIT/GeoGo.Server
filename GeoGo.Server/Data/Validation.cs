@@ -19,6 +19,12 @@
             public const int MaxNameLength = 100;
         }
 
+        public class User
+        {
+            public const int MaxBioLength = 500;
+            public const int MaxLocationLength = 100;
+        }
+
         public class Clue
         {
             public const int MaxTextLength = 250;

@@ -5,7 +5,8 @@
 
     public class User : IdentityUser, IEntity
     {
-        public string ProfilePhotoUrl { get; set; }
+
+        public Profile Profile { get; set; }
 
         public DateTime CreatedOn { get; set; }
         

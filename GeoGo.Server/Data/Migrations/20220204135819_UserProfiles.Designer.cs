@@ -4,6 +4,7 @@ using GeoGo.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeoGo.Server.Data.Migrations
 {
     [DbContext(typeof(GeoGoDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220204135819_UserProfiles")]
+    partial class UserProfiles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -301,30 +303,6 @@ namespace GeoGo.Server.Data.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("Locations");
-                });
-
-            modelBuilder.Entity("GeoGo.Server.Data.Models.Profile", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Bio")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ProfilePhotoUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Profiles");
                 });
 
             modelBuilder.Entity("GeoGo.Server.Data.Models.Riddle", b =>
@@ -694,15 +672,6 @@ namespace GeoGo.Server.Data.Migrations
                     b.Navigation("Address");
                 });
 
-            modelBuilder.Entity("GeoGo.Server.Data.Models.Profile", b =>
-                {
-                    b.HasOne("GeoGo.Server.Data.Models.User", null)
-                        .WithOne("Profile")
-                        .HasForeignKey("GeoGo.Server.Data.Models.Profile", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("GeoGo.Server.Data.Models.Stage", b =>
                 {
                     b.HasOne("GeoGo.Server.Data.Models.Game", "Game")
@@ -728,6 +697,39 @@ namespace GeoGo.Server.Data.Migrations
                     b.Navigation("Location");
 
                     b.Navigation("Riddle");
+                });
+
+            modelBuilder.Entity("GeoGo.Server.Data.Models.User", b =>
+                {
+                    b.OwnsOne("GeoGo.Server.Data.Models.Profile", "Profile", b1 =>
+                        {
+                            b1.Property<string>("UserId")
+                                .HasColumnType("nvarchar(450)");
+
+                            b1.Property<string>("Bio")
+                                .IsRequired()
+                                .HasMaxLength(500)
+                                .HasColumnType("nvarchar(500)");
+
+                            b1.Property<string>("Location")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
+
+                            b1.Property<string>("ProfilePhotoUrl")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("UserId");
+
+                            b1.ToTable("AspNetUsers");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UserId");
+                        });
+
+                    b.Navigation("Profile")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -815,9 +817,6 @@ namespace GeoGo.Server.Data.Migrations
                     b.Navigation("CreatedGames");
 
                     b.Navigation("Feedbacks");
-
-                    b.Navigation("Profile")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,6 @@
-﻿namespace GeoGo.Server.Features.Games
+﻿using GeoGo.Server.Infrastructure.Services;
+
+namespace GeoGo.Server.Features.Games
 {
     using Models;
 
@@ -6,9 +8,9 @@
     {
         Task<int> Create(string imageUrl, string title, string description, string? userId);
 
-        Task<bool> Update(int id, string title, string description, string userId);
+        Task<Result> Update(int id, string title, string description, string userId);
 
-        Task<bool> Delete(int id, string userId);
+        Task<Result> Delete(int id, string userId);
 
         Task<IEnumerable<GameListingServiceModel>> ByUser(string? userId);
 

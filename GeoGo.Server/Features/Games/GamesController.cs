@@ -22,13 +22,9 @@
         }
 
         [HttpGet]
-        public async Task<IEnumerable<GameListingServiceModel>> Mine()
-        {
-            var userId = this.currentUser.GetId();
+        public async Task<IEnumerable<GameListingServiceModel>> Mine() 
+            => await this.games.ByUser(this.currentUser.GetId());
 
-            return await this.games.ByUser(userId);
-        }
-        
         [HttpGet]
         [Route(Id)]
         public async Task<ActionResult<GameDetailsServiceModel>> Details(int id) 
@@ -49,17 +45,18 @@
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update(UpdateGameRequestModel model)
+        [Route(Id)]
+        public async Task<ActionResult> Update(int id, UpdateGameRequestModel model)
         {
             var userId = this.currentUser.GetId();
 
-            var updated = await this.games.Update(
-                model.Id, 
+            var result = await this.games.Update(
+                id, 
                 model.Title, 
                 model.Description, 
                 userId);
 
-            if (!updated)
+            if (result.Failure)
             {
                 return BadRequest();
             }
@@ -73,9 +70,8 @@
         {
             var userId = this.currentUser.GetId();
 
-            var deleted = await this.games.Delete(id, userId);
-
-            if (!deleted)
+            var result = await this.games.Delete(id, userId);
+            if (result.Failure)
             {
                 return BadRequest();
             }

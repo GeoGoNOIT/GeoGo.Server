@@ -16,7 +16,23 @@
             : base(options) 
             => this.currentUser = currentUser;
 
+        public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Clue> Clues { get; set; }
+
+        public DbSet<Feedback> Feedbacks { get; set; }
+
         public DbSet<Game> Games { get; set; }
+
+        public DbSet<Location> Locations { get; set; }
+
+        public DbSet<Riddle> Riddles { get; set; }
+
+        public DbSet<Stage> Stages { get; set; }
+
+        public DbSet<Profile> Profiles { get; set; }
         
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
@@ -34,67 +50,83 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Game>()
+            builder
+                .Entity<Game>()
                 .HasQueryFilter(g => !g.IsDeleted)
                 .HasOne(g => g.Creator)
                 .WithMany(u => u.CreatedGames)
                 .HasForeignKey(g => g.CreatorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Game>()
+            builder
+                .Entity<Game>()
                 .HasQueryFilter(g => !g.IsDeleted)
                 .HasOne(g => g.Category)
                 .WithMany(c => c.Games)
                 .HasForeignKey(g => g.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Location>()
+            builder
+                .Entity<Location>()
                 .HasQueryFilter(l => !l.IsDeleted)
                 .HasOne(l => l.Address)
                 .WithMany(a => a.Locations)
                 .HasForeignKey(l => l.AddressId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Clue>()
+            builder
+                .Entity<Clue>()
                 .HasQueryFilter(c => !c.IsDeleted)
                 .HasOne(c => c.Riddle)
                 .WithMany(r => r.Clues)
                 .HasForeignKey(c => c.RiddleId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Stage>()
+            builder
+                .Entity<Stage>()
                 .HasQueryFilter(s => !s.IsDeleted)
                 .HasOne(s => s.Riddle)
                 .WithMany(r => r.Stages)
                 .HasForeignKey(s => s.RiddleId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Stage>()
+            builder
+                .Entity<Stage>()
                 .HasQueryFilter(s => !s.IsDeleted)
                 .HasOne(s => s.Location)
                 .WithMany(l => l.Stages)
                 .HasForeignKey(s => s.RiddleId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Stage>()
+            builder
+                .Entity<Stage>()
                 .HasQueryFilter(s => !s.IsDeleted)
                 .HasOne(s => s.Game)
                 .WithMany(g => g.Stages)
                 .HasForeignKey(s => s.RiddleId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Feedback>()
+            builder
+                .Entity<Feedback>()
                 .HasQueryFilter(f => !f.IsDeleted)
                 .HasOne(f => f.Game)
                 .WithMany(g => g.Feedbacks)
                 .HasForeignKey(f => f.GameId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Feedback>()
+            builder
+                .Entity<Feedback>()
                 .HasQueryFilter(f => !f.IsDeleted)
                 .HasOne(f => f.User)
                 .WithMany(u => u.Feedbacks)
                 .HasForeignKey(f => f.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<User>()
+                .HasOne(u => u.Profile)
+                .WithOne()
+                .HasForeignKey<Profile>(p => p.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);

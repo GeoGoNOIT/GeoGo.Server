@@ -1,4 +1,6 @@
-﻿namespace GeoGo.Server.Features.Games
+﻿using GeoGo.Server.Infrastructure.Services;
+
+namespace GeoGo.Server.Features.Games
 {
     using Data;
     using GeoGo.Server.Data.Models;
@@ -27,13 +29,12 @@
             return game.Id;
         }
 
-        public async Task<bool> Update(int id, string title, string description, string userId)
+        public async Task<Result> Update(int id, string title, string description, string userId)
         {
             var game = await this.ByIdAndByUserId(id, userId);
-
             if (game == null)
             {
-                return false;
+                return "This user cannot edit this game.";
             }
 
             game.Title = title;
@@ -44,13 +45,12 @@
             return true;
         }
 
-        public async Task<bool> Delete(int id, string userId)
+        public async Task<Result> Delete(int id, string userId)
         {
             var game = await this.ByIdAndByUserId(id, userId);
-
             if (game == null)
             {
-                return false;
+                return "This user cannot delete this game.";
             }
 
             this.data.Games.Remove(game);

@@ -7,6 +7,7 @@
     using Features.Identity;
     using Filters;
     using Services;
+    using Features.Profiles;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@
             => services
                 .AddDbContext<GeoGoDbContext>(options => options
                     .UseSqlServer(configuration.GetDefaultConnectionString()));
+
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services
@@ -78,6 +80,7 @@
         public static IServiceCollection AddApplicationServices(this IServiceCollection services) 
             => services
                 .AddTransient<IIdentityService, IdentityService>()
+                .AddTransient<IProfileService, ProfileService>()
                 .AddScoped<ICurrentUserService, CurrentUserService>()
                 .AddTransient<IGameService, GameService>();
 
